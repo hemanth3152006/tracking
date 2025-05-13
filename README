@@ -1,0 +1,19 @@
+# Bus Tracking Website
+
+This is a bus tracking website designed to provide real-time tracking of buses using the driver's mobile device. Unlike other tracking systems, this platform relies on the driver's mobile location to accurately track the bus's position.
+
+## Features
+
+- Real-time bus location updates
+- Location data sourced directly from the driver's mobile device
+- User-friendly interface for passengers to view bus locations
+
+## How It Works
+
+1. The driver installs the mobile app and enables location sharing.
+2. The app continuously sends the driver's (bus) location to the server.
+3. Passengers can view the live location of the bus on the website.
+
+## Note
+
+This project is under development. More features and details will be added soon.
