@@ -7,6 +7,32 @@
         loginForm.style.display = 'block';
         roleTitle.textContent = `${role} Login`; // Update the title based on the selected role
         loginForm.setAttribute('role', role); // Set the role attribute for the form
+
+        // Display the role image
+        const roleImage = document.getElementById('roleImage');
+        const roleImageSrc = document.getElementById('roleImageSrc');
+        roleImage.style.display = 'block';
+
+        // Update the image source based on the role
+        if (role === 'Student') {
+            roleImageSrc.src = 'student.png'; // Replace with the actual path to the student image
+        } else if (role === 'Driver') {
+            roleImageSrc.src = 'driver.png'; // Replace with the actual path to the driver image
+        } else if (role === 'Admin') {
+            roleImageSrc.src = 'admin.png'; // Replace with the actual path to the admin image
+        }
+    }
+
+    function showLoading() {
+        const loadingMessage = document.getElementById('loadingMessage');
+        loadingMessage.style.display = 'flex'; // Show the loading animation
+        document.body.classList.add('loading-active'); // Add blur effect to the background
+    }
+
+    function hideLoading() {
+        const loadingMessage = document.getElementById('loadingMessage');
+        loadingMessage.style.display = 'none'; // Hide the loading animation
+        document.body.classList.remove('loading-active'); // Remove blur effect from the background
     }
 
     // Handle form submission
@@ -26,15 +52,9 @@
         this.style.display = 'none';
 
         // Show the loading message
-        const loadingMessage = document.getElementById('loadingMessage');
-        setTimeout(() => {
-            loadingMessage.style.display = 'block'; // Show the loading animation
-        }, 2000); // Simulate a delay for slow internet
+        showLoading(); // Show the loading animation
 
-        // Redirect after 5 seconds
-        setTimeout(() => {
-            loadingMessage.style.display = 'none'; // Hide the loading animation
-            window.location.href = "dashboard.html"; // Replace with your target page
-        }, 7000); // Total delay (2s for loading + 5s for redirect)
+        // Redirect immediately
+        window.location.href = "dashboard.html"; // Replace with your target page
     });
 </script>

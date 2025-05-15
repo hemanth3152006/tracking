@@ -75,6 +75,30 @@
         .login-container .role-buttons button:hover {
             background-color: #0056b3;
         }
+        #loadingMessage {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        #loadingMessage .container {
+            display: flex;
+            gap: 5px;
+        }
+        #loadingMessage .bar {
+            width: 10px;
+            height: 10px;
+            background-color: #007bff;
+            border-radius: 50%;
+            animation: loading-animation 0.6s infinite alternate;
+        }
+        @keyframes loading-animation {
+            to {
+                transform: translateY(-10px);
+                opacity: 0.5;
+            }
+        }
     </style>
 </head>
 <body>
@@ -94,8 +118,18 @@
         <div id="welcomeMessage" style="display: none; text-align: center; margin-top: 20px;">
             <h2 id="welcomeText"></h2>
         </div>
+        <div id="welcomeSection" style="display: none; text-align: center; margin-top: 20px;">
+            <h2 id="welcomeNote"></h2>
+            <p id="userDetails"></p>
+        </div>
         <div id="loadingMessage" style="display: none; text-align: center; margin-top: 20px;">
-            <h2>Loading...</h2>
+            <div class="container">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <h2>Loading... Please wait</h2>
         </div>
     </div>
 
@@ -107,6 +141,18 @@
             loginForm.style.display = 'block';
             roleTitle.textContent = `${role} Login`; // Update the title based on the selected role
             loginForm.setAttribute('role', role); // Set the role attribute for the form
+        }
+
+        function showLoading() {
+            const loadingMessage = document.getElementById('loadingMessage');
+            loadingMessage.style.display = 'flex'; // Show the loading animation
+            document.body.classList.add('loading-active'); // Add blur effect to the background
+        }
+
+        function hideLoading() {
+            const loadingMessage = document.getElementById('loadingMessage');
+            loadingMessage.style.display = 'none'; // Hide the loading animation
+            document.body.classList.remove('loading-active'); // Remove blur effect from the background
         }
 
         // Handle form submission
@@ -126,16 +172,10 @@
             this.style.display = 'none';
 
             // Show the loading message
-            const loadingMessage = document.getElementById('loadingMessage');
-            setTimeout(() => {
-                welcomeMessage.style.display = 'none'; // Hide the welcome message
-                loadingMessage.style.display = 'block'; // Show the loading message
-            }, 2000); // Delay before showing the loading message
+            showLoading(); // Show the loading animation
 
-            // Redirect after 5 seconds
-            setTimeout(() => {
-                window.location.href = "dashboard.html"; // Replace with your target page
-            }, 5000);
+            // Redirect immediately
+            window.location.href = "dashboard.html"; // Replace with your target page
         });
     </script>
 </body>
